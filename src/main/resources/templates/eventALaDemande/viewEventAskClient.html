@@ -1,0 +1,113 @@
+<header th:replace="layouts/header"> </header>
+
+<div class="content-body">
+
+	<div class="row page-titles mx-0">
+		<div class="col p-md-0">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+				<li class="breadcrumb-item active"><a href="javascript:void(0)">Evenement</a></li>
+			</ol>
+		</div>
+	</div>
+	<!-- row -->
+
+	 <div class="container-fluid">
+            	<div class="row">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-body">
+		                	<div class="d-sm-flex justify-content-between mb-2">
+                                 <h3 class="card-widget__title text-dark mt-3">DETAILS SUR LA DEMANDE</h3>
+                                 <div class="media-reply__link">
+                                 <!-- <a th:href="@{user/add}" class="btn btn-primary px-3 ml-4" type="button">S'abonner</a> -->                                     
+                                 </div>
+                             </div>		                  
+		                </div>						
+					</div>
+				</div>
+			</div> 
+		<div class="row justify-content-center">
+			<div class="col-lg-12">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="row">
+							<div class="col-lg-8">
+								<!-- Details -->
+								<div class="card mb-4">
+									<div class="card-body">
+										<div class="mb-3 d-flex justify-content-between">
+											<div>
+												<span class="me-3"><strong>DETAILS SUR
+														L'EVENEMENT</strong></span>
+											</div>
+
+										</div>
+										<table class="table table-borderless" th:object="${eventAsk}">
+											<tbody>
+												<tr>
+													<td colspan="2">Nom de l'evenement</td>
+													<td th:text="*{nomEvent}"></td>
+												</tr>
+												<tr>
+													<td colspan="2">Motif de l'evenement</td>
+													<td th:text="*{motif}"></td>
+												</tr>
+												<tr>
+													<td colspan="2">Reference</td>
+													<td th:text="*{reference}"></td>
+												</tr>												
+												<tr>
+													<td colspan="2">Pays</td>
+													<td th:text="*{pays}"></td>
+												</tr>
+												<tr>
+													<td colspan="2">Ville</td>
+													<td th:text="*{ville}"></td>
+												</tr>
+												<tr>
+													<td colspan="2">Quartier</td>
+													<td th:text="*{quartier}"></td>
+												</tr>
+												<tr>
+													<td colspan="2">Lieu dit</td>
+													<td th:text="*{lieuDit}"></td>
+												</tr>
+												<tr>
+													<td colspan="2">Date de creation</td>
+													<td th:text="*{dateDemande}"></td>
+												</tr>
+												<tr>
+													<td colspan="2">Date de debut</td>
+													<td class="text-success" th:text="*{dateDebutEvent}"></td>
+												</tr>
+												<tr>
+													<td colspan="2">Date de fin</td>
+													<td class="text-danger" th:text="*{dateFinEvent}"></td>
+												</tr>
+												<tr class="fw-bold">
+													<td colspan="2">Description de l'evenement</td>
+													<td th:text="*{description}"></td>
+												</tr>
+
+											</tbody>
+
+										</table>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+                
+	</div>
+	<!-- #/ container -->
+</div>
+<!--**********************************
+            Content body end
+        ***********************************-->
+
+<div th:replace="layouts/footer :: footer"></div>

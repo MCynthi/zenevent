@@ -1,0 +1,178 @@
+<header th:replace="layouts/header"> </header>
+
+<div class="content-body">
+
+	<div class="row page-titles mx-0">
+		<div class="col p-md-0">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+				<li class="breadcrumb-item active"><a href="javascript:void(0)">Evenement</a></li>
+			</ol>
+		</div>
+	</div>
+	<!-- row -->
+
+	 <div class="container-fluid">
+            	<div class="row">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-body">
+		                	<div class="d-sm-flex justify-content-between mb-2">
+                                 <h3 class="card-widget__title text-dark mt-3">DETAILS SUR L'EVENEMENT</h3>
+                                 <div class="media-reply__link">
+                                 <!-- <a th:href="@{user/add}" class="btn btn-primary px-3 ml-4" type="button">S'abonner</a> -->                                     
+                                 </div>
+                             </div>		                  
+		                </div>						
+					</div>
+				</div>
+			</div> 
+		<div class="row justify-content-center">
+			<div class="col-lg-12">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="row">
+							<div class="col-lg-8">
+								<!-- Details -->
+								<div class="card mb-4">
+									<div class="card-body">
+										<div class="mb-3 d-flex justify-content-between">
+											<div>
+												<span class="me-3"><strong>DETAILS SUR
+														L'EVENEMENT</strong></span>
+											</div>
+
+										</div>
+										<table class="table table-borderless" th:object="${event}">
+											<tbody>
+												<tr>
+													<td colspan="2">Nom de l'evenement</td>
+													<td th:text="*{nomEvent}"></td>
+												</tr>												
+												<tr>
+													<td colspan="2">Pays</td>
+													<td th:text="*{paysEvent}"></td>
+												</tr>
+												<tr>
+													<td colspan="2">Ville</td>
+													<td th:text="*{ville}"></td>
+												</tr>
+												<tr>
+													<td colspan="2">Quartier</td>
+													<td th:text="*{quartier}"></td>
+												</tr>
+												<tr>
+													<td colspan="2">Lieu dit</td>
+													<td th:text="*{lieuDit}"></td>
+												</tr>
+												<tr>
+													<td colspan="2">Date de creation</td>
+													<td th:text="*{dateCreationEvent}"></td>
+												</tr>
+												<tr>
+													<td colspan="2">Date de debut</td>
+													<td class="text-success" th:text="*{dateDebutEvent}"></td>
+												</tr>
+												<tr>
+													<td colspan="2">Date de fin</td>
+													<td class="text-danger" th:text="*{dateFinEvent}"></td>
+												</tr>
+												<tr class="fw-bold">
+													<td colspan="2">Description de l'evenement</td>
+													<td th:text="*{description}"></td>
+												</tr>
+
+											</tbody>
+
+										</table>
+									</div>
+								</div>
+
+							</div>
+							<div class="col-lg-4">
+
+								<div class="card mb-4">
+									<!-- Shipping information -->
+									<div class="card-body">
+										<h3 class="h6">
+											<strong>Evenements a venir</strong>
+										</h3>
+										<hr>
+										<table class="table table-borderless">
+											<tbody th:each="e:${otherEvent}">
+
+												<tr th:if="${otherEvent.empty}">
+													<td>Aucun autre evenement à venir actuellement ...</td>
+												</tr>
+												<tr>
+													<td colspan="2" th:text="*{e.nomEvent}"></td>
+													<td th:text="*{e.dateDebutEvent}"></td>
+												</tr>
+
+											</tbody>
+
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Tableau des visiteurs enregistres lors de l'evenement</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-xs mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nom et prenom</th>
+                                                    <th>Email</th>
+                                                    <th>Telephone</th>
+                                                    <th>Metier</th>
+                                                    <th>Tranche d'age</th>                                                    
+                                                    <th>Action</th>                                                   
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            	<tr th:if="${visitors.empty}">
+	                                                <td colspan="5">Aucun visiteur enregistre actuellement ...</td>
+	                                            </tr>
+                                                <tr  th:each="v:${visitors}">
+                                                    <td th:text="${v.nomVisitor}"></td>  
+                                                    <td th:text="${v.email}"></td>
+                                                    <td th:text="${v.telephone1}"></td>                                 
+                                                    <td th:text="${v.metier}"></td>  
+                                                    <td th:text="${v.age} + ' ans'"></td>  
+                                                    <td>
+                                                        <span>
+                                                        	<a th:href="@{'~/visitor/edit/'+${v.idVisitor}}"><button type="button" class="btn btn-sm btn-success"><i class="fa fa-pencil-square-o"></i></button></a>
+                                    					</span>
+                                                        <span class="m-0 pl-3">
+                                                        	<a th:href="@{'~/visitor/view/'+${v.idVisitor}}"><button type="button" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></button></a>
+                                                        </span>
+                                                        <span class="m-0 pl-3">
+                                                        	<a onclick="return confirm('Etes vous ur de vouloir supprimer ce visiteur?')" th:href="@{'~/visitor/delete/'+${v.idVisitor}}"><button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button></a>                                                 
+                                                        </span>
+                                                    </td>                                                  
+                                                </tr> 
+                                            </tbody>
+                                        </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+	</div>
+	<!-- #/ container -->
+</div>
+<!--**********************************
+            Content body end
+        ***********************************-->
+
+<div th:replace="layouts/footer :: footer"></div>

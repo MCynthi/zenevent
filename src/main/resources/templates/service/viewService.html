@@ -1,0 +1,94 @@
+<header th:replace="layouts/header"> </header>
+
+<div class="content-body">
+
+	<div class="row page-titles mx-0">
+		<div class="col p-md-0">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+				<li class="breadcrumb-item active"><a href="javascript:void(0)">Evenement</a></li>
+			</ol>
+		</div>
+	</div>
+	<!-- row -->
+
+	<div class="container-fluid">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-body">
+							<h3 class="card-widget__title text-dark mt-3" th:text="'LISTE DES VISITEURS INTERESSES PAR LE SERVICE '+${service.nomService}"></h3>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row justify-content-center">
+				<div class="col-lg-12">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="card">
+								<div class="card-body">
+									<div class="active-member">
+										<div class="table-responsive">
+											<table class="table table-xs mb-0">
+												<thead>
+													<tr>
+														<th>Nom et prenom</th>
+														<th>Email</th>
+														<th>Telephone</th>
+														<th>Metier</th>
+														<th>Tranche d'age</th>
+														<th>Action</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr th:if="${visitor.empty}">
+														<td colspan="5">Aucun visiteur enregistre
+															actuellement ...</td>
+													</tr>
+													<tr th:each="v:${visitor}">
+														<td th:text="${v.nomVisitor}"></td>
+														<td th:text="${v.email}"></td>
+														<td th:text="${v.telephone1}"></td>
+														<td th:text="${v.metier}"></td>
+														<td th:text="${v.age} + ' ans'"></td>
+														<td><span> <a
+																th:href="@{'~/visitor/edit/'+${v.idVisitor}}"><button
+																		type="button" class="btn btn-sm btn-success">
+																		<i class="fa fa-pencil-square-o"></i>
+																	</button></a>
+														</span> <span class="m-0 pl-3"> <a
+																th:href="@{'~/visitor/view/'+${v.idVisitor}}"><button
+																		type="button" class="btn btn-sm btn-warning">
+																		<i class="fa fa-eye"></i>
+																	</button></a>
+														</span> <span class="m-0 pl-3"> <a
+																onclick="return confirm('Etes vous ur de vouloir supprimer ce visiteur?')"
+																th:href="@{'~/visitor/delete/'+${v.idVisitor}}"><button
+																		type="button" class="btn btn-sm btn-danger">
+																		<i class="fa fa-trash"></i>
+																	</button></a>
+														</span></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- #/ container -->
+</div>
+<!--**********************************
+            Content body end
+        ***********************************-->
+
+<div th:replace="layouts/footer :: footer"></div>

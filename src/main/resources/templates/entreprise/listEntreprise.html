@@ -1,0 +1,84 @@
+<header th:replace="gestionnaire/header"> </header>
+
+<div class="content-body">
+
+	<div class="row page-titles mx-0">
+		<div class="col p-md-0">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+				<li class="breadcrumb-item active"><a href="javascript:void(0)">Evenement</a></li>
+			</ol>
+		</div>
+	</div>
+	<!-- row -->
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-body">
+						<h3 class="card-widget__title text-dark mt-3">LISTE DES
+							ENTREPRISES ENREGISTREES</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-lg-12">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="card">
+							<div class="card-body">
+								<div class="active-member">
+									<div class="table-responsive">
+										<table class="table table-xs mb-0">
+											<thead>
+												<tr>
+													<th>Nom de l'entreprise</th>
+													<th>Email</th>
+													<th>Contact 1</th>
+													<th>Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:if="${entreprise.empty}">
+													<td colspan="4">Aucune entreprise disponible
+														actuellement ...</td>
+												</tr>
+												<tr th:each="e:${entreprise}">
+													<td th:text="${e.nomEntreprise}"></td>
+													<td th:text="${e.email}"></td>
+													<td th:text="${e.telephone1}"></td>
+													
+													<td> <span class="m-0 pl-3"> <a
+															th:href="@{'entreprise/view/'+${e.idEntreprise}}"><button
+																	type="button" class="btn btn-sm btn-warning">
+																	<i class="fa fa-eye"></i>
+																</button></a>
+													</span> <span class="m-0 pl-3">
+                                                        	<a onclick="return confirm('Etes vous ur de vouloir supprimer cet evenement?')" th:href="@{'gestionnaire/entreprises/delete/'+${e.idEntreprise}}"><button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button></a>                                               
+                                                        </span></td>
+												</tr>
+
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+	</div>
+	<!-- #/ container -->
+</div>
+<!--**********************************
+            Content body end
+        ***********************************-->
+
+<div th:replace="layouts/footer :: footer"></div>

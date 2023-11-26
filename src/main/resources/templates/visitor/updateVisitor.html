@@ -1,0 +1,102 @@
+<header th:replace="layouts/header"> </header>
+
+ <div class="content-body">
+
+            <div class="row page-titles mx-0">
+                <div class="col p-md-0">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Evenement</a></li>
+                    </ol>
+                </div>
+            </div>
+            <!-- row -->
+
+            <div class="container-fluid">
+            	<div class="row">
+		            <div class="col-12">
+		                <div class="card">
+		                    <div class="card-body">
+		                       <h3 class="card-widget__title text-dark mt-3">MODIFIER CE VISITEUR</h3>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">                            	
+                                <div class="form-validation">
+                                    <form th:action="@{/visitor/updateVisitor}" method="post" th:object="${visitor}">
+                                    	<input type="hidden" th:field="*{idVisitor}" readonly="readonly" />
+                                    	  <div class="form-group">
+                                            <label>Nom et prenom</label>
+                                            <input type="text" class="form-control" th:field="*{nomVisitor}" placeholder="Nom et prenom">
+                                        </div>                                          
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                            <input type="text" class="form-control" th:field="*{email}" placeholder="Email">
+                                        </div>
+                                         <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                            	<input type="hidden" class="form-control" th:field="*{commentaire}" placeholder="Commentaire">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                            	<input type="hidden" class="form-control" th:field="*{impression}" placeholder="Impression">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label>Numero de telephone</label>
+                                            	<input type="text" class="form-control" th:field="*{telephone1}" placeholder="Numero de telephone">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                				<label>Autre numero de telephone</label>
+                                            	<input type="text" class="form-control" th:field="*{telephone2}" placeholder="Autre numero de telephone">
+                                            </div>
+                                        </div>                                       
+                                         <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label>Metier</label>
+                                            	<input type="text" class="form-control" th:field="*{metier}" placeholder="Metier">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                				<label>secteur d'activite</label>
+                                            	<input type="text" class="form-control" th:field="*{secteurActivite}" placeholder="secteur d'activite">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label>Sexe</label>
+                                            	 <select id="inputState" class="form-control" th:field="*{sexe}">                                                   
+		                                    		<option th:each="sexe : ${T(com.amh.zenevent.entities.Visitor.Sexe).values()}"
+               										 th:value="${sexe}" th:text="${sexe}"></option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                				<label>Tranche d'age</label>
+                                            	 <select id="inputState" class="form-control" th:field="*{age}">
+                                            	 	<option th:value="'15'+'-'+'25'" th:text="'15'+'-'+'25'" />
+		                                    		<option th:value="'25'+'-'+'35'" th:text="'25'+'-'+'35'" />
+		                                    		<option th:value="'35'+'-'+'45'" th:text="'35'+'-'+'45'" />
+		                                    		<option th:value="'45'+'-'+'55'" th:text="'45'+'-'+'55'" />
+		                                    		<option th:value="'55'+' et '+'plus'" th:text="'55'+' et '+'plus'" />
+                                                </select>
+                                            </div>
+                                        </div>                                 
+                                        
+                                        <button type="submit" class="btn btn-dark">Modifier</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #/ container -->
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+<div th:replace="layouts/footer :: footer"></div>

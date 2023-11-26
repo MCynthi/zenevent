@@ -1,0 +1,84 @@
+<header th:replace="gestionnaire/header"> </header>
+
+<div class="content-body">
+
+	<div class="row page-titles mx-0">
+		<div class="col p-md-0">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+				<li class="breadcrumb-item active"><a href="javascript:void(0)">Evenement</a></li>
+			</ol>
+		</div>
+	</div>
+	<!-- row -->
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="d-sm-flex justify-content-between mb-2">
+							<h3 class="card-widget__title text-dark mt-3">LISTE DES
+								SUPPORTS</h3>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="col-lg-12">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="card">
+							<div class="card-body">
+								<div class="active-member">
+									<div class="table-responsive">
+										<table
+											class="support table table-xs mb-0 table table-bordered">
+											<thead>
+												<tr>
+													<th>Nom de l'entreprise</th>
+													<th>Sujet</th>
+													<th>Preoccupation</th>
+													<th>Action</th>
+												</tr>
+											</thead>
+											<tbody th:each="s:${support}">
+												<tr th:if="${support.empty}">
+													<td colspan="4">Aucun support disponible actuellement
+														...</td>
+												</tr>
+												<tr>
+													<td class="ellipsis second"><span
+														th:text="${s.entreprise.nomEntreprise}"></span></td>
+													<td class="ellipsis second"><span th:text="${s.sujet}"></span></td>
+													<td class="ellipsis first"><span
+														th:text="${s.preoccupation}"></span></td>
+													<td><span class="m-0 pl-3"> <a
+															th:href="@{'~/gestionnaire/support/answer/'+${s.id}}"><button
+																	type="button" class="btn btn-sm btn-primary">Repondre
+																</button></a>
+													</span></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- #/ container -->
+</div>
+<!--**********************************
+            Content body end
+        ***********************************-->
+
+<div th:replace="layouts/footer :: footer"></div>

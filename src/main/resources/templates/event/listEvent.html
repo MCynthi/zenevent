@@ -1,0 +1,145 @@
+<header th:replace="layouts/header"> </header>
+
+ <div class="content-body">
+
+            <div class="row page-titles mx-0">
+                <div class="col p-md-0">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Evenement</a></li>
+                    </ol>
+                </div>
+            </div>
+            <!-- row -->
+
+            <div class="container-fluid">
+            	<div class="row">
+		            <div class="col-12">
+		                <div class="card">
+		                    <div class="card-body">
+		                       <h3 class="card-widget__title text-dark mt-3">LISTE DES EVENEMENTS</h3>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+						<div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="active-member">
+                                    <div class="table-responsive">
+                                        <table class="table table-xs mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nom de l'evenement</th>
+                                                    <th>Date de debut</th>
+                                                    <th>Pays</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>                                                   
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            	<tr th:if="${event.empty}">
+	                                                <td colspan="4">Aucun evenement disponible actuellement ...</td>
+	                                            </tr>
+                                                <tr th:each="e:${event}">
+                                                    <td th:text="${e.nomEvent}"></td>
+                                                    <td th:text="${e.dateDebutEvent}"></td>
+                                                    <td th:text="${e.paysEvent}"></td>
+                                                     <td>
+                                                     	<i class="fa fa-circle-o text-primary  mr-2"></i> A venir
+                                                     </td>  
+                                                    <td>
+                                                        <span>
+                                                        	<a onclick="return confirm('Etes vous ur de vouloir vous abonner à cet evenement?')" th:href="@{'event/abonne/'+${e.idEvent}}">
+                                                        		<button type="button" class="btn btn-sm btn-success" th:disabled="${e.disableButton} == true"><i class="fa fa-plus"></i></button>
+                                                        		
+                                                        	</a>
+                                    					</span>
+                                                        <span class="m-0 pl-3">
+                                                        	<a th:href="@{'event/view/'+${e.idEvent}}"><button type="button" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></button></a>
+                                                        </span>
+                                                       
+                                                    </td>                                                  
+                                                </tr>
+                                               
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+                    </div>
+                </div>
+                
+                
+                  	<div class="row">
+		            <div class="col-12">
+		                <div class="card">
+		                    <div class="card-body">
+		                       <h3 class="card-widget__title text-dark mt-3">LISTE DES EVENEMENTS ABONNES</h3>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+						<div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="active-member">
+                                    <div class="table-responsive">
+                                        <table class="table table-xs mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nom de l'evenement</th>
+                                                    <th>Date de debut</th>
+                                                    <th>Pays</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>                                                   
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            	<tr th:if="${eventEntreprise.empty}">
+	                                                <td colspan="4">Aucun evenement disponible actuellement ...</td>
+	                                            </tr>
+                                                <tr th:each="e:${eventEntreprise}">
+                                                    <td th:text="${e.nomEvent}"></td>
+                                                    <td th:text="${e.dateDebutEvent}"></td>
+                                                    <td th:text="${e.paysEvent}"></td>
+                                                     <td>
+                                                     	<i class="fa fa-circle-o text-primary  mr-2"></i> A venir
+                                                     </td>  
+                                                    <td>                                                        
+                                                        <span class="m-0 pl-3">
+                                                        	<a th:href="@{'event/view/'+${e.idEvent}}"><i class="fa fa-eye"></i></a>
+                                                        </span>                                                         
+                                                        <span class="m-0 pl-3">
+                                                        	<a onclick="return confirm('Etes vous sur de vouloir vous desabonner de cet evenement?')" th:href="@{'event/desabonnement/'+${e.idEvent}}"><i class="fa fa-toggle-on fa-xl"></i></a>                                               
+                                                        </span>
+                                                    </td>                                                  
+                                                </tr>
+                                               
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #/ container -->
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+<div th:replace="layouts/footer :: footer"></div>

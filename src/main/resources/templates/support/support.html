@@ -1,0 +1,152 @@
+<header th:replace="layouts/header"> </header>
+<div class="content-body">
+
+	<div class="row page-titles mx-0">
+		<div class="col p-md-0">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+				<li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
+			</ol>
+		</div>
+	</div>
+	<!-- row -->
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="d-sm-flex justify-content-between mb-2">
+							<h3 class="card-widget__title text-dark mt-3">SUPPORT</h3>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-body">
+						<ul class="nav nav-pills mb-3">
+							<li class="nav-item"><a href="#navpills-1"
+								class="nav-link active" data-toggle="tab" aria-expanded="false">Nouveau
+									support</a></li>
+							<li class="nav-item"><a href="#navpills-2" class="nav-link"
+								data-toggle="tab" aria-expanded="false">Tickets ouverts<span
+									class="badge badge-primary badge-sm float-right m-t-5"
+									th:text="${supportOuvert}"></span></a></li>
+							<li class="nav-item"><a href="#navpills-3" class="nav-link"
+								data-toggle="tab" aria-expanded="true">Tickets fermes<span
+									class="badge badge-danger badge-sm float-right m-t-5"
+									th:text="${supportFerme}"></span></a></li>
+						</ul>
+						<hr />
+						<div class="tab-content br-n pn">
+							<div id="navpills-1" class="tab-pane active">
+
+								<div class="compose-content mt-5">
+									<form th:action="@{support/saveSupport}" method="post"
+										th:object="${support}">
+										<div class="form-group">
+											<input type="text" class="form-control bg-transparent"
+												th:field="*{sujet}" placeholder=" Sujet">
+										</div>
+										<div class="form-group">
+											<textarea class="textarea_editor form-control bg-light"
+												th:field="*{preoccupation}" rows="3"
+												placeholder="Entrer votre preoccupation ..."></textarea>
+										</div>
+										<div class="text-left m-t-15">
+											<button type="submit"
+												class="btn btn-primary m-b-30 m-t-15 f-s-14 p-l-20 p-r-20 m-r-10">
+												<i class="fa fa-paper-plane m-r-5"></i> Envoyer
+											</button>
+										</div>
+									</form>
+								</div>
+
+
+							</div>
+							<div id="navpills-2" class="tab-pane">
+								<table class="support table table-xs mb-0 table table-bordered">
+									<thead>
+										<tr>
+											<th>Sujet</th>
+											<th>Preoccupation</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody th:each="s:${listSupportOuvert}">
+										<tr th:if="${listSupportOuvert.empty}">
+											<td colspan="4">Aucun support ouvert disponible actuellement ...</td>
+										</tr>
+										<tr>
+											<td class="ellipsis second"><span th:text="${s.sujet}"></span></td>
+											<td class="ellipsis first"><span
+												th:text="${s.preoccupation}"></span></td>
+											<td><span> <a
+													th:href="@{'support/edit/'+${s.id}}"><button
+															type="button" class="btn btn-sm btn-success">
+															<i class="fa fa-pencil-square-o"></i>
+														</button></a>
+											</span> <span class="m-0 pl-3"> <a
+													th:href="@{'support/view/'+${s.id}}"><button
+															type="button" class="btn btn-sm btn-warning">
+															<i class="fa fa-eye"></i>
+														</button></a>
+											</span> <span class="m-0 pl-3"> <a
+													onclick="return confirm('Ce support n\'a pas encore ete traite. Souhaitez vous reellement le supprimer?')"
+													th:href="@{'support/delete/'+${s.id}}"><button
+															type="button" class="btn btn-sm btn-danger">
+															<i class="fa fa-trash"></i>
+														</button></a>
+											</span></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div id="navpills-3" class="tab-pane">
+								<table class="support table table-xs mb-0 table table-bordered">
+									<thead>
+										<tr>
+											<th>Sujet</th>
+											<th>Preoccupation</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody th:each="s:${listSupportFerme}">
+										<tr th:if="${listSupportFerme.empty}">
+											<td colspan="4">Aucun support ferme disponible actuellement ...</td>
+										</tr>
+										<tr>											
+											<td class="ellipsis"><span th:text="${s.sujet}"></span></td>
+											<td class="ellipsis first"><span
+												th:text="${s.preoccupation}"></span></td>
+											<td><span class="m-0 pl-3"> <a
+													th:href="@{'support/view/'+${s.id}}"><button type="button"
+															class="btn btn-sm btn-warning">
+															<i class="fa fa-eye"></i>
+														</button></a>
+											</span> <span class="m-0 pl-3"> <a
+													onclick="return confirm('Etes vous ur de vouloir supprimer cet agent?')"
+													th:href="@{'user/answer/'+${s.id}}"><button
+															type="button" class="btn btn-sm btn-danger">
+															<i class="fa fa-trash"></i>
+														</button></a>
+											</span></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- #/ container -->
+</div>
+
+<div th:replace="layouts/footer :: footer"></div>

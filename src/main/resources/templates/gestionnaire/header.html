@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head th:fragments="header">
+<meta charset="utf-8" />
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ZENEVENT</title>
+<link rel="icon" type="image.png" sizes="16x16"
+	th:href="@{/static/images/favicon.png}" />
+<link
+	th:href="@{/static/plugins/pg-calendar/css/pignose.calendar.min.css}"
+	rel="stylesheet" />
+<link rel="stylesheet"
+	th:href="@{/static/plugins/chartist/css/chartist.min.css}" />
+<link rel="stylesheet"
+	th:href="@{/static/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css}" />
+<link th:href="@{/static/css/style.css}" rel="stylesheet" />
+
+</head>
+
+<body>
+
+
+	<!-- <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div> -->
+
+	<div id="main-wrapper">
+
+
+		<div class="nav-header">
+			<div class="brand-logo">
+				<a th:href="@{/gestionnaire/}">
+				 <h3 class="text-white">ZENEVENT</h3>
+				</a>
+			</div>
+		</div>
+		
+		<div class="header">
+			<div class="header-content clearfix">
+
+				<div class="nav-control">
+					<div class="hamburger">
+						<span class="toggle-icon"><i class="icon-menu"></i></span>
+					</div>
+				</div>
+			
+				<div class="header-right">
+					<ul class="clearfix">
+						<!-- <li class="icons dropdown"><a href="javascript:void(0)"
+							data-toggle="dropdown"> <i class="mdi mdi-bell-outline"></i>
+								<span class="badge badge-pill gradient-2">3</span>
+						</a>
+							<div
+								class="drop-down animated fadeIn dropdown-menu dropdown-notfication">
+								<div
+									class="dropdown-content-heading d-flex justify-content-between">
+									<span class="">2 New Notifications</span> <a
+										href="javascript:void()" class="d-inline-block"> <span
+										class="badge badge-pill gradient-2">5</span>
+									</a>
+								</div>
+								<div class="dropdown-content-body">
+									<ul>
+										<li><a href="javascript:void()"> <span
+												class="mr-3 avatar-icon bg-success-lighten-2"><i
+													class="icon-present"></i></span>
+												<div class="notification-content">
+													<h6 class="notification-heading">Events near you</h6>
+													<span class="notification-text">Within next 5 days</span>
+												</div>
+										</a></li>
+										<li><a href="javascript:void()"> <span
+												class="mr-3 avatar-icon bg-danger-lighten-2"><i
+													class="icon-present"></i></span>
+												<div class="notification-content">
+													<h6 class="notification-heading">Event Started</h6>
+													<span class="notification-text">One hour ago</span>
+												</div>
+										</a></li>
+										<li><a href="javascript:void()"> <span
+												class="mr-3 avatar-icon bg-success-lighten-2"><i
+													class="icon-present"></i></span>
+												<div class="notification-content">
+													<h6 class="notification-heading">Event Ended
+														Successfully</h6>
+													<span class="notification-text">One hour ago</span>
+												</div>
+										</a></li>
+										<li><a href="javascript:void()"> <span
+												class="mr-3 avatar-icon bg-danger-lighten-2"><i
+													class="icon-present"></i></span>
+												<div class="notification-content">
+													<h6 class="notification-heading">Events to Join</h6>
+													<span class="notification-text">After two days</span>
+												</div>
+										</a></li>
+									</ul>
+
+								</div>
+							</div> 
+							</li>-->
+						<li class="icons dropdown d-none d-md-flex"><a
+							href="javascript:void(0)" class="log-user" data-toggle="dropdown">
+								<span th:text="${nom}"></span> <i class="fa fa-angle-down f-s-14"
+								aria-hidden="true"></i>
+						</a>
+							<div
+								class="drop-down dropdown-language animated fadeIn  dropdown-menu">
+								<div class="dropdown-content-body">
+									<ul>										
+										<li><a th:href="@{/login?logout}"><i class="icon-key"></i>
+												<span>Logout</span></a></li>
+									</ul>
+								</div>
+							</div></li>
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+	
+		<div class="nk-sidebar">
+			<div class="nk-nav-scroll">
+				<ul class="metismenu" id="menu">
+
+					<li>
+						<a th:href="@{/gestionnaire/}" aria-expanded="false">
+                            <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
+                        </a>					
+					</li>
+					<li>
+						<a th:href="@{/gestionnaire/entreprises}" aria-expanded="false">
+                            <i class="icon-envelope menu-icon"></i><span class="nav-text">Entreprises</span>
+                        </a>					
+					</li>
+					<li class="mega-menu mega-menu-sm"><a class="has-arrow"
+						href="javascript:void()" aria-expanded="false"> <i
+							class="icon-globe-alt menu-icon"></i><span class="nav-text">Evènements</span>
+					</a>
+						<ul aria-expanded="false">
+							<li><a th:href="@{~/gestionnaire/event}">Liste des évènements</a></li>	
+							<li><a th:href="@{~/gestionnaire/event/demande}">Liste des demandes</a></li>							
+						</ul></li>					
+					
+					<li>
+						<a th:href="@{/gestionnaire/categories}" aria-expanded="false">
+                            <i class="icon-grid menu-icon"></i><span class="nav-text">Categories</span>
+                        </a>					
+					</li>			
+					<li>
+                        <a th:href="@{/gestionnaire/support}" aria-expanded="false">
+                            <i class="icon-badge menu-icon"></i><span class="nav-text">Support</span>
+                        </a>
+                    </li>
+				</ul>
+				</li>
+				</ul>
+			</div>
+		</div>
+		<!--**********************************
+            Sidebar end
+        ***********************************-->

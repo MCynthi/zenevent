@@ -1,0 +1,69 @@
+<header th:replace="layouts/header"> </header>
+
+<div class="content-body">
+
+	<div class="row page-titles mx-0">
+		<div class="col p-md-0">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+				<li class="breadcrumb-item active"><a href="javascript:void(0)">Evenement</a></li>
+			</ol>
+		</div>
+	</div>
+	<!-- row -->
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="d-sm-flex justify-content-between mb-2">
+							<h3 class="card-widget__title text-dark mt-3">DETAIL SUR CE
+								SUPPORT</h3>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="col-lg-12">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="card">
+							<div class="card-body" th:object="${support}">
+								<div class="read-content">
+									<div class="media mb-4 mt-1">
+										<div class="media-body">
+											<span class="float-right" th:text="*{dateEnregistrement}"></span>
+											<h4 class="m-0 text-primary" th:text="*{sujet}"></h4>
+										</div>
+									</div>
+									<p th:text="*{preoccupation}"></p>
+									<hr>
+																		
+									<div th:if="${support.statut == true}">
+										<div class="form-group p-t-15">
+											<h5 class="p-t-15">Element de reponse</h5>
+											<hr>
+											<p th:text="*{commentaire}"></p>											
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- #/ container -->
+	</div>
+	<!--**********************************
+            Content body end
+        ***********************************-->
+
+	<div th:replace="layouts/footer :: footer"></div>

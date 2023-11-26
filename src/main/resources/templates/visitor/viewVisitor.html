@@ -1,0 +1,127 @@
+<header th:replace="layouts/header"> </header>
+
+<div class="content-body">
+
+	<div class="row page-titles mx-0">
+		<div class="col p-md-0">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+				<li class="breadcrumb-item active"><a href="javascript:void(0)">Evenement</a></li>
+			</ol>
+		</div>
+	</div>
+	<!-- row -->
+
+	<div class="container-fluid">
+		<div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                       <h3 class="card-widget__title text-dark mt-3">DETAILS SUR LE VISITEUR</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="row justify-content-center">
+			<div class="col-lg-12">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="row">
+							<div class="col-lg-8">
+								<!-- Details -->
+								<div class="card mb-4">
+									<div class="card-body">
+										
+										<table class="table table-borderless" th:object="${visitor}">
+											<tbody>
+												<tr>
+													<td colspan="2">Nom et prenom</td>
+													<td th:text="*{nomVisitor}"></td>
+												</tr>
+												<tr>
+													<td colspan="2">Email</td>
+													<td th:text="*{email}"></td>
+												</tr>
+												<tr>
+													<td colspan="2">Numero de telephone </td>
+													<td th:text="*{telephone1}"></td>
+												</tr>
+												<tr>
+													<td colspan="2">Autre numero de telephone</td>
+													<td th:text="*{telephone2 != null}? *{telephone2} : '(non specifie)'"></td>
+												</tr>
+												<tr>
+													<td colspan="2">Tranche d'age</td>
+													<td th:text="*{age} + ' ans'"></td>
+												</tr>												
+												<tr>
+													<td colspan="2">Sexe</td>
+													<td th:text="*{sexe}"></td>
+												</tr>												
+												<tr>
+													<td colspan="2">Metier</td>
+													<td th:text="*{metier}"></td>
+												</tr>
+												<tr>
+													<td colspan="2">Secteur d'activite</td>
+													<td th:text="*{secteurActivite}"></td>
+												</tr>
+												<tr>
+													<td colspan="2">Impression</td>
+													<td th:text="*{impression}"></td>
+												</tr>
+												<tr>
+									                <td colspan="2">Commentaire</td>
+									                <td th:text="*{commentaire != null}? *{commentaire} : '(non specifie)'"></td>
+									              </tr>
+									            
+												<tr>
+													<td colspan="2">Date d'enregistrement</td>
+													<td th:text="*{dateEnregistrement}"></td>
+												</tr>
+
+											</tbody>
+
+										</table>
+									</div>
+								</div>
+
+							</div>
+							<div class="col-lg-4">
+
+								<div class="card mb-4">
+									<!-- Shipping information -->
+									<div class="card-body">
+										<table class="table table-borderless">
+											<tbody th:object="${event}">
+												<tr>
+													<td colspan="2"><strong class="text-dart">Nom de l'evenement</strong></td>
+													<td th:text="*{nomEvent}"></td>
+												</tr>											
+											</tbody>
+										</table>
+										<hr>
+										<h3 class="h6">
+											<strong>Liste des services interesses par ce visiteur </strong>
+										</h3>
+										<div>
+											<ul class="list-group list-group-flush" th:each="s:${service}">
+											  <li class="list-group-item" th:text="${s.nomService}"></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- #/ container -->
+</div>
+<!--**********************************
+            Content body end
+        ***********************************-->
+
+<div th:replace="layouts/footer :: footer"></div>

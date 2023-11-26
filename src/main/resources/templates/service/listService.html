@@ -1,0 +1,77 @@
+<header th:replace="layouts/header"> </header>
+
+<div class="content-body">
+
+	<div class="row page-titles mx-0">
+		<div class="col p-md-0">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+				<li class="breadcrumb-item active"><a href="javascript:void(0)">Evenement</a></li>
+			</ol>
+		</div>
+	</div>
+	<!-- row -->
+
+	<div class="container-fluid">
+		<div class="row">
+		            <div class="col-12">
+		            	<div class="card">
+						<div class="card-body">
+		                	<div class="d-sm-flex justify-content-between mb-2">
+                                 <h3 class="card-widget__title text-dark mt-3">LISTE DES SERVICES</h3>
+                                 <div class="media-reply__link">
+                                 <a th:href="@{service/add}" class="btn btn-primary px-3 ml-4" type="button">Nouveau service</a>                                     
+                                 </div>
+                             </div>		                  
+		                </div>						
+					</div>
+		            </div>
+		        </div>
+		<div class="row justify-content-center">			
+			<div class="col-lg-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table header-border table-hover verticle-middle">
+								<thead>
+									<tr>
+										<th scope="col">#</th>
+										<th scope="col">Nom du service</th>
+										<th scope="col">Categorie</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									
+									<tr th:each="s:${service}">
+										<td>1</td>
+										<td scope="col" th:text="${s.nomService}"></td>
+										<td scope="col" th:text="${s.category.nomCategorie}"></td>	
+										<td>
+											<span>
+                                             	<a th:href="@{'service/edit/'+${s.idService}}"><button type="button" class="btn btn-sm btn-success"><i class="fa fa-pencil-square-o"></i></button></a>
+                         					</span>
+                                              <span class="m-0 pl-3">
+                                              	<a th:href="@{'service/view/'+${s.idService}}"><button type="button" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></button></a>
+                                              </span>
+                                             <span class="m-0 pl-3">
+                                             	<a onclick="return confirm('Etes vous ur de vouloir supprimer ce service?')" th:href="@{'service/delete/'+${s.idService}}"><button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button></a>                                                    
+                                             </span>
+                                         </td>         									
+									</tr>
+									
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- #/ container -->
+</div>
+<!--**********************************
+            Content body end
+        ***********************************-->
+
+<div th:replace="layouts/footer :: footer"></div>

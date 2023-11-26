@@ -1,0 +1,82 @@
+<header th:replace="gestionnaire/header"> </header>
+
+ <div class="content-body">
+
+            <div class="row page-titles mx-0">
+                <div class="col p-md-0">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Evenement</a></li>
+                    </ol>
+                </div>
+            </div>
+            <!-- row -->
+
+            <div class="container-fluid">
+            	<div class="row">
+		            <div class="col-12">
+		                <div class="card">
+		                    <div class="card-body">
+		                       <h3 class="card-widget__title text-dark mt-3">AJOUTER UN EVENEMENT</h3>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="form-validation">
+                                    <form th:action="@{saveEvent}" method="post" th:object="${event}">
+                                    	  <div class="form-group">
+                                            <label>Nom de l'evenement </label>
+                                            <input type="text" class="form-control" th:field="*{nomEvent}" placeholder="Nom de l'evenement">
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label>Date de debut</label>
+                                                <input type="date" class="form-control" th:field="*{dateDebutEvent}" placeholder="Date de debut">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label>Date de fin</label>
+                                                <input type="date" class="form-control" th:field="*{dateFinEvent}" placeholder="Date de fin">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col">
+                                            	<label>Pays de l'evenement</label>
+                                                <input type="text" class="form-control" th:field="*{paysEvent}" placeholder="Pays">
+                                            </div>
+                                            <div class="col">
+                                            	<label>Ville de l'evenement</label>
+                                                <input type="text" class="form-control" th:field="*{ville}" placeholder="Ville">
+                                            </div>
+                                            <div class="col">
+                                            	<label>Quartier</label>
+                                                <input type="text" class="form-control" th:field="*{quartier}" placeholder="Quartier">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Lieu dit</label>
+                                            <input type="text" class="form-control" th:field="*{lieuDit}" placeholder="Lieu dit">
+                                        </div>                                        
+                                        <div class="form-group">
+                                            <label>Description de l'evenement:</label>
+                                            <textarea class="form-control h-150px" th:field="*{description}" rows="6" id="comment"></textarea>
+                                        </div>                                       
+                                        
+                                        <button type="submit" class="btn btn-dark">Ajouter</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #/ container -->
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+<div th:replace="layouts/footer :: footer"></div>

@@ -1,0 +1,127 @@
+<header th:replace="layouts/header"> </header>
+
+<div class="content-body">
+
+	<div class="row page-titles mx-0">
+		<div class="col p-md-0">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+				<li class="breadcrumb-item active"><a href="javascript:void(0)">Evenement</a></li>
+			</ol>
+		</div>
+	</div>
+	<!-- row -->
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="d-sm-flex justify-content-between mb-2">
+							<h3 class="card-widget__title text-dark mt-3">LISTE DES
+								AGENTS</h3>
+							<div class="media-reply__link">
+								<a th:href="@{user/add}" class="btn btn-primary px-3 ml-4"
+									type="button">Nouvel Agent</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="col-lg-12">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="card">
+							<div class="card-body">
+								<div class="basic-form">
+									<h4 class="card-title">Status de l'agent</h4>
+									<form th:action="@{user}" method="get">
+										<div class="input-group col-md-6">
+											<select class="custom-select" name="status">
+												<option value=" ">________________________SELECT______________________</option>
+												<option th:value="ACTIF" th:text="ACTIF"
+													th:selected="ACTIF == ${pStatus}" />
+												<option th:value="INACTIF" th:text="INACTIF"
+													th:selected="INACTIF == ${pStatus}" />
+											</select>
+
+											<div class="input-group-append">
+												<button class="btn btn-outline-dark" type="submit">
+													<i class="fa fa-search" aria-hidden="true"></i>
+												</button>
+											</div>
+										</div>
+									</form>
+									<br /> <br />
+								</div>
+								<div class="active-member">
+									<div class="table-responsive">
+										<table class="table table-xs mb-0">
+											<thead>
+												<tr>
+													<th>Nom et prenom</th>
+													<th>Email</th>
+													<th>Telephone</th>
+													<th>Status</th>
+													<th>Action</th>
+												</tr>
+											</thead>
+											<tbody th:each="u:${user}">
+												<tr th:if="${user.empty}">
+													<td colspan="4">Aucun agent disponible actuellement
+														...</td>
+												</tr>
+												<tr>
+													<td th:text="${u.nomUser}"></td>
+													<td th:text="${u.email}"></td>
+													<td th:text="${u.telephone}"></td>
+													<td th:text="${u.isActif}? 'Actif' : 'Inactif'">
+													<td><span> <a
+															th:href="@{'user/edit/'+${u.idUser}}"><button
+																	type="button" class="btn btn-sm btn-success">
+																	<i class="fa fa-pencil-square-o"></i>
+																</button></a>
+													</span> <span class="m-0 pl-3"> <a
+															th:href="@{'user/view/'+${u.idUser}}"><button
+																	type="button" class="btn btn-sm btn-warning">
+																	<i class="fa fa-eye"></i>
+																</button></a>
+													</span> <span class="m-0 pl-3"> <a
+															onclick="return confirm('Etes vous ur de vouloir supprimer cet agent?')"
+															th:href="@{'user/delete/'+${u.idUser}}"><button
+																	type="button" class="btn btn-sm btn-danger">
+																	<i class="fa fa-trash"></i>
+																</button></a>
+													</span> <span class="m-0 pl-3" th:if="${u.isActif} == false">
+															<a th:href="@{'user/activer/'+${u.idUser}}"
+															onclick="return confirm('Etes vous sur de vouloir activer cet agent?')"><i
+																class="fa fa-toggle-off fa-xl"></i></a>
+													</span> <span class="m-0 pl-3" th:if="${u.isActif} == true">
+															<a th:href="@{'user/desactiver/'+${u.idUser}}"
+															onclick="return confirm('Etes vous sur de vouloir desactiver cet agent?')"><i
+																class="fa fa-toggle-on fa-xl"></i></a>
+													</span></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- #/ container -->
+</div>
+<!--**********************************
+            Content body end
+        ***********************************-->
+
+<div th:replace="layouts/footer :: footer"></div>

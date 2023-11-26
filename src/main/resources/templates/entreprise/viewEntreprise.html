@@ -1,0 +1,255 @@
+<header th:replace="gestionnaire/header"> </header>
+
+<div class="content-body">
+
+	<div class="row page-titles mx-0">
+		<div class="col p-md-0">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+				<li class="breadcrumb-item active"><a href="javascript:void(0)">Entreprise</a></li>
+			</ol>
+		</div>
+	</div>
+	<!-- row -->
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-body">
+						<h3 class="card-widget__title text-dark mt-3">DETAILS SUR CET
+							ENTREPRISE</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-lg-12">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="row">
+							<div class="col-lg-8">
+								<!-- Details -->
+								<div class="card mb-4">
+									<div class="card-body">
+
+										<table class="table table-borderless"
+											th:object="${entreprise}">
+											<tbody>
+												<tr>
+													<td colspan="2">Nom</td>
+													<td th:text="*{nomEntreprise}"></td>
+												</tr>
+												<tr>
+													<td colspan="2">Email</td>
+													<td th:text="*{email}"></td>
+												</tr>
+												<tr>
+													<td colspan="2">Numero de telephone</td>
+													<td th:text="*{telephone1}"></td>
+												</tr>
+												<tr>
+													<td colspan="2">Autre numero de telephone</td>
+													<td
+														th:text="*{telephone2 != null}? *{telephone2} : '(non specifie)'"></td>
+												</tr>
+												<tr>
+													<td colspan="2">Username</td>
+													<td th:text="*{username} + ' ans'"></td>
+												</tr>
+											</tbody>
+
+										</table>
+									</div>
+								</div>
+
+							</div>
+							<div class="col-lg-4">
+
+								<div class="card mb-4">
+									<!-- Shipping information -->
+									<div class="card-body">
+										<table class="table table-borderless">
+											<tbody th:object="${event}">
+												<tr>
+													<td colspan="2"><strong class="text-dart">Nombre
+															d'evenement(s) abonne</strong></td>
+													<td th:text="${totalEvent}"></td>
+												</tr>
+												<tr>
+													<td colspan="2"><strong class="text-dart">Nombre
+															de visiteur(s) enregistres</strong></td>
+													<td th:text="${totalVisiteur}"></td>
+												</tr>
+												<tr>
+													<td colspan="2"><strong class="text-dart">Nombre
+															d'agent(s) crees</strong></td>
+													<td th:text="${totalAgent}"></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body">
+								<div class="d-sm-flex justify-content-between mb-2">
+									<h3 class="card-widget__title text-dark mt-3">LISTE DES
+										AGENTS DE CET ENTREPRISE</h3>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-12">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="card">
+								<div class="card-body">
+									<div class="active-member">
+										<div class="table-responsive">
+											<table class="table table-xs mb-0">
+												<thead>
+													<tr>
+														<th>Nom et prenom</th>
+														<th>Email</th>
+														<th>Telephone</th>
+														<th>Username</th>
+														<th>Status</th>
+													</tr>
+												</thead>
+												<tbody th:each="u:${user}">
+													<tr th:if="${user.empty}">
+														<td colspan="4">Aucun agent disponible actuellement
+															...</td>
+													</tr>
+													<tr>
+														<td th:text="${u.nomUser}"></td>
+														<td th:text="${u.email}"></td>
+														<td th:text="${u.telephone}"></td>
+														<td th:text="${u.username}"></td>
+														<td th:text="${u.isActif}? 'Actif' : 'Inactif'">
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-12">
+								<div class="card">
+									<div class="card-body">
+										<div class="d-sm-flex justify-content-between mb-2">
+											<h3 class="card-widget__title text-dark mt-3">LISTE DES
+												VISITEURS DE CET ENTREPRISE</h3>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-12">
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="card">
+										<div class="card-body">
+											<div class="active-member">
+												<div class="table-responsive">
+													<table class="table table-xs mb-0">
+														<thead>
+															<tr>
+																<th>Nom et prenom</th>
+																<th>Email</th>
+																<th>Telephone</th>
+																<th>Secteur d'activite</th>
+																<th>Metier</th>
+																<th>Sexe</th>
+																<th>Tranche d'age</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr th:if="${visitor.empty}">
+																<td colspan="5">Aucun visiteur enregistre
+																	actuellement ...</td>
+															</tr>
+															<tr th:each="v:${visitor}">
+																<td th:text="${v.nomVisitor}"></td>
+																<td th:text="${v.email}"></td>
+																<td th:text="${v.telephone1}"></td>
+																<td th:text="${v.secteurActivite}"></td>
+																<td th:text="${v.metier}"></td>
+																<td th:text="${v.sexe}"></td>
+																<td th:text="${v.age} + ' ans'"></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="row">
+							<div class="col-12">
+								<div class="card">
+									<div class="card-body">
+										<div class="d-sm-flex justify-content-between mb-2">
+											<h3 class="card-widget__title text-dark mt-3">LISTE DES
+												SERVICES CREES PAR CET ENTREPRISE</h3>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-12">
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="card">
+										<div class="card-body">
+											<div class="active-member">
+												<div class="table-responsive">
+													<table class="table table-xs mb-0">
+														<thead>
+															<tr>
+																<th>Nom du service</th>
+																<th>Category</th>															</tr>
+														</thead>
+														<tbody>
+															<tr th:if="${service.empty}">
+																<td colspan="5">Aucun visiteur enregistre
+																	actuellement ...</td>
+															</tr>
+															<tr th:each="s:${service}">
+																<td th:text="${s.nomService}"></td>
+																<td th:text="${s.category.nomCategorie}"></td>															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+			<!-- #/ container -->
+		</div>
+		<!--**********************************
+            Content body end
+        ***********************************-->
+
+		<div th:replace="layouts/footer :: footer"></div>
